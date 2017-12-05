@@ -12,6 +12,7 @@ Vue.filter('convert-time',(value)=>{   //{'abc'| convert   }
 });
 //处理title太长的问题
 Vue.filter('convert-title',(value,limit)=>{
+    if(!value)return;
     //判断
     if(value.length > limit){
        return value.substr(0,limit) + '...'
@@ -38,6 +39,7 @@ import Member from './components/Member/Member.vue';
 import Shopcart from './components/Shopcart/Shopcart.vue';
 import Search from './components/Search/Search.vue';
 import NewsList from './components/News/NewsList.vue';
+import NewsDetail from './components/News/NewsDetail.vue';
 
 
 // 路由相关组件 结束
@@ -56,6 +58,7 @@ router.addRoutes([
     {name:'shopcart',path:'/shopcart',component:Shopcart},//购物车
     {name:'search',path:'/search',component:Search},//查找
     {name:'news.list',path:'/news/list',component:NewsList},//新闻列表
+    {name:'news.detail',path:'/news/detail',component:NewsDetail}//新闻详情
 ]);
 // VueRouter 结束
 

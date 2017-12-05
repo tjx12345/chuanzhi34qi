@@ -9,16 +9,16 @@
     <div class="demo">
       <ul>
             <li v-for="news in newsList" :key="news.id">
-                <a href="#">
+                <router-link :to="{name:'news.detail',query:{newsId:news.id} }">
                     <img class="" :src="news.img_url">
                     <div >
-                        <span>{{news.title|convert-title(13)}}</span>
+                        <span>{{news.title|convert-title(14)}}</span>
                         <div class="news-desc">
                             <p>点击数:{{news.click}}</p>
                             <p>发表时间:{{news.add_time|convert-time}}</p>
                         </div>
                     </div>
-                </a>
+                </router-link>
             </li>
             <li class="line"></li>
         </ul>
@@ -49,10 +49,10 @@
 
 .demo a {
     display: block;
-    width: 330px;
+    width: 100%;
     height: 44px;
     color: #000;
-    padding: 10px 15px;
+    padding: 10px 0px 10px 10px;
 }
 .demo img {
     float: left;
@@ -62,8 +62,7 @@
 }
 .demo a div {
     float: left;
-    width: 238px;
-    margin-right: 20px;
+    width: 258px;
 }
 .demo span {
     display: block;
