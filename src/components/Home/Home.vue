@@ -40,7 +40,7 @@
                 },{
                     className:'pic',
                     title:'图文分享',
-                    router:{name:'news.list'}
+                    router:{name:'photo.list',params:{categoryId:0}}
                 },{
                     className:'goods',
                     title:'商品列表',

@@ -12,6 +12,7 @@ Vue.filter('convertTime',(value)=>{   //{'abc'| convert   }
 });
 //处理title太长的问题
 Vue.filter('convertTitle',(value,limit)=>{
+    //预防网络太慢，在按照默认值渲染以后产生的问题
     if(!value)return;
     //判断
     if(value.length > limit){
@@ -42,6 +43,7 @@ import Shopcart from './components/Shopcart/Shopcart.vue';
 import Search from './components/Search/Search.vue';
 import NewsList from './components/News/NewsList.vue';
 import NewsDetail from './components/News/NewsDetail.vue';
+import PhotoList from './components/Photo/PhotoList.vue';
 
 
 // 路由相关组件 结束
@@ -60,7 +62,9 @@ router.addRoutes([
     {name:'shopcart',path:'/shopcart',component:Shopcart},//购物车
     {name:'search',path:'/search',component:Search},//查找
     {name:'news.list',path:'/news/list',component:NewsList},//新闻列表
-    {name:'news.detail',path:'/news/detail',component:NewsDetail}//新闻详情
+    {name:'news.detail',path:'/news/detail',component:NewsDetail},//新闻详情
+    //如果写成 components 会爆错$createElement is undefined
+    {name:'photo.list',path:'/photo/list/:categoryId',component:PhotoList},//图文分享
 ]);
 // VueRouter 结束
 
