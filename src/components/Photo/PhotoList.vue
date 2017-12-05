@@ -12,14 +12,14 @@
         <div class="photo-list">
             <ul>
                 <li v-for="img in imgs" :key="img.id">
-                    <a>
+                    <router-link :to="{name:'photo.detail',params:{imgId:img.id}  }">
                         <img v-lazy="img.img_url">
                         <p>
                             <span>{{img.title}}</span>
                             <br>
                             <span>{{img.zhaiyao}}</span>
                         </p>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </div>
