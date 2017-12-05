@@ -1,21 +1,17 @@
 <template>
-    <div class="tmpl">
-      <div class="cms-s-header">
-        <h1 >&nbsp<</h1>
-        <h1 class="page-title">Pull up</h1>
-      </div> 
-
-    
+    <div>
+        <!-- 使用nav-bar组件 -->
+        <nav-bar title="新闻列表"></nav-bar>
     <div class="demo">
       <ul>
             <li v-for="news in newsList" :key="news.id">
                 <router-link :to="{name:'news.detail',query:{newsId:news.id} }">
                     <img class="" :src="news.img_url">
                     <div >
-                        <span>{{news.title|convert-title(14)}}</span>
+                        <span>{{news.title|convertTitle(14)}}</span>
                         <div class="news-desc">
                             <p>点击数:{{news.click}}</p>
-                            <p>发表时间:{{news.add_time|convert-time}}</p>
+                            <p>发表时间:{{news.add_time|convertTime}}</p>
                         </div>
                     </div>
                 </router-link>
@@ -80,23 +76,6 @@
 }
 .demo p:nth-child(2) {
     float: right;
-}
-
-
-.cms-s-header{
-        height: 40px;
-        background-color: #f7f7f7;
-}
-.tmpl h1{
-   display: inline-block;
-   height: 40px;
-   line-height: 40px;
-   margin-top:0px;
-   margin-bottom:0px;
-
-}
-.page-title{
-    margin-left: 25%;
 }
 .line {
     margin-left: 16px;

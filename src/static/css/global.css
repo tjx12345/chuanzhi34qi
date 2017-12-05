@@ -11,3 +11,9 @@ ul{
     padding: 0;
     margin:0;
 }
+.tmpl{
+    margin-bottom: 55px;
+}
+.news-content img {
+    width: 100%
+}

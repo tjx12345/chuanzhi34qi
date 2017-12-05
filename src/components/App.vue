@@ -2,7 +2,7 @@
     <div>
             <!-- 头部 -->
             <mt-header title="传智34期"></mt-header>
-            <router-view></router-view>
+            <router-view class="tmpl"></router-view>
             <mt-tabbar v-model="selected">
               <mt-tab-item id="home">
                 <img slot="icon" src="../static/img/index.png">

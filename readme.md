@@ -36,6 +36,18 @@ moment().format('YYYY-MM-DD HH:mm:ss ');
 
 ```
 
+#### 零散知识点总结
+* 过滤器可以传递多个参数 {{text | convert(1,2)}}
+* `Vue.filter('convert',(value,1,2)=>{})`
+* 页面初次是可以以data中声明的默认值来渲染的
+    - 此时是一个对象，用对象来调用过滤器容易出异常
+    - 如果页面调用过滤器等行为包裹在v-for内，初始值是[],则不会触发
+* 头部组件的复用
+    - 子组件的功能
+        + html + css + js
+    - 数据依赖外部 props:['xxx']
+    - 样子依赖外部 slot填坑
+* v-html中的元素，不被scoped样式所影响,其样式只影响当前存在于template中的元素
 
 #### 项目依赖包记录
 * `npm i vue vue-router vue-preview axios mint-ui -S && npm i css-loader style-loader less-loader less file-loader url-loader babel-loader babel-core babel-preset-env babel-plugin-transform-runtime vue-loader vue-template-compiler html-webpack-plugin webpack webpack-dev-server -D`

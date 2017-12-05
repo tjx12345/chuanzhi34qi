@@ -6,12 +6,12 @@ import Vue from 'vue';
 
 // 注册全局过滤器 开始
 import Moment from 'moment';
-Vue.filter('convert-time',(value)=>{   //{'abc'| convert   }
+Vue.filter('convertTime',(value)=>{   //{'abc'| convert   }
     //2015-04-16T03:50:28.000Z
     return Moment(value).format('YYYY-MM-DD');
 });
 //处理title太长的问题
-Vue.filter('convert-title',(value,limit)=>{
+Vue.filter('convertTitle',(value,limit)=>{
     if(!value)return;
     //判断
     if(value.length > limit){
@@ -27,6 +27,8 @@ Vue.filter('convert-title',(value,limit)=>{
 // 注册全局组件 开始
 import MyLi from './components/Commons/MyLi.vue';
 import MyUl from './components/Commons/MyUl.vue';
+import NavBar from './components/Commons/NavBar.vue';
+Vue.component(NavBar.name,NavBar);
 Vue.component(MyUl.name,MyUl);
 Vue.component(MyLi.name,MyLi);
 // 注册全局组件 结束

@@ -1,11 +1,12 @@
 <template>
-    <div class="tmpl">
+    <div>
+        <nav-bar title="新闻详情"></nav-bar>
         <div class="news-title">
-            <p>{{newsInfo.title|convert-title(15)}}</p>
+            <p>{{newsInfo.title|convertTitle(15)}}</p>
             <div>
                 <span>{{newsInfo.click}}次点击</span>
                 <span>分类:民生经济</span>
-                <span>添加时间:{{newsInfo.add_time|convert-time}}</span>
+                <span>添加时间:{{newsInfo.add_time|convertTime}}</span>
             </div>
         </div>
         <div class="news-content" v-html="newsInfo.content"></div>
@@ -34,6 +35,7 @@ export default {
 
 </script>
 <style scoped>
+
 .news-title p {
     color: #0a87f8;
     font-size: 20px;
