@@ -5,7 +5,8 @@
     <mt-loadmore :bottom-method="loadBottom" ref="loadmore" :auto-fill="isAutoFill" :bottom-all-loaded="allLoaded">
         <ul ref="ul">
             <li v-for="goods in goodsList" :key="goods.id">
-                <a>
+            <!-- 1:去哪里 -->
+                <router-link :to="{name:'goods.detail',params:{goodsId:goods.id} }">
                     <img :src="goods.img_url">
                     <div class="title">{{goods.title|convertTitle(25)}}</div>
                     <div class="desc">
@@ -22,7 +23,7 @@
                             </div>
                         </div>
                     </div>
-                </a>
+                </router-link>
             </li>         
         </ul>
     </mt-loadmore>
@@ -67,8 +68,7 @@ export default {
         },
         changeHeight(){//改变父盒子高度
             this.height = document.documentElement.clientHeight -
-            this.appRefs.header.$el.offsetHeight - 
-            this.appRefs.footer.$el.offsetHeight;
+            this.appRefs.header.$el.offsetHeight;
         }
     },
     data(){

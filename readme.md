@@ -73,3 +73,4 @@ moment().format('YYYY-MM-DD HH:mm:ss ');
     - 上拉或下拉
 * 商品详情中小球的飞入
     - vue过渡效果
+    - this.$set
