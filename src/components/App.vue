@@ -1,9 +1,10 @@
 <template>
     <div>
             <!-- 头部 -->
-            <mt-header title="传智34期"></mt-header>
-            <router-view class="tmpl"></router-view>
-            <mt-tabbar v-model="selected">
+            <mt-header title="传智34期" ref="header"></mt-header>
+            <router-view class="tmpl" :appRefs="$refs"></router-view>
+            <!-- js中: this.$refs js中this.。template中直接用 -->
+            <mt-tabbar v-model="selected" ref="footer">
               <mt-tab-item id="home">
                 <img slot="icon" src="../static/img/index.png">
                 首页

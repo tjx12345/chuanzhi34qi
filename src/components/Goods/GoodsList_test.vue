@@ -1,8 +1,8 @@
 <template>
-<div :style="'height:' + height">
+<div style="height:627px;">
             <nav-bar title="商品列表"></nav-bar>
 
-    <mt-loadmore :bottom-method="loadBottom" ref="loadmore" :auto-fill="isAutoFill" :bottom-all-loaded="allLoaded">
+    <mt-loadmore :bottom-method="loadBottom" ref="loadmore" :auto-fill="isAutoFill" @bottom-status-change="changeStatus" :bottom-all-loaded="allLoaded">
         <ul ref="ul">
             <li v-for="goods in goodsList" :key="goods.id">
                 <a>
@@ -30,45 +30,22 @@
 </template>
 <script>
 export default {
-    props:['appRefs'],//接受app里的头和底部
     methods:{
+        //检测状态改变
+        changeStatus(s){
+            console.log(s);
+        },
         //触发上拉函数
         loadBottom(){
-            this.$axios.get(`getgoods?pageindex=${this.page}`)
-            .then(res=>{
-                //判断是否还有数据
-                if(res.data.message.length == 0){
-                    this.$toast({
-                      message: '提示:没有更多数据了',
-                      duration: 2000
-                    });
-                    //禁止下拉刷新函数调用
-                    this.allLoaded = true;
-                    return;
-                }
-                //追加下一页的数据
-                this.goodsList = this.goodsList.concat(res.data.message);
-                this.page ++; 
-                //从loading状态通知回到pull初始状态
-                this.$refs.loadmore.onBottomLoaded();
-            })
-            .catch(err=>console.log(err));
 
-            //this.page -> 5
-            //获取第五页的数据追加，并自增 -> 6
-
-            // this.allLoaded = true; //一次后，禁止该函数的调用
+            console.log('上拉触发了');
+            this.allLoaded = true; //一次后，禁止该函数的调用
 
             //发请求获取数据
-            // this.$refs.loadmore.onBottomLoaded();
+            this.$refs.loadmore.onBottomLoaded();
             // console.log(this.$refs.loadmore);
             // console.log(this.$refs.ul);
             // console.log(this);
-        },
-        changeHeight(){//改变父盒子高度
-            this.height = document.documentElement.clientHeight -
-            this.appRefs.header.$el.offsetHeight - 
-            this.appRefs.footer.$el.offsetHeight;
         }
     },
     data(){
@@ -76,22 +53,15 @@ export default {
             goodsList:[],//商品列表
             isAutoFill:false,//是否自动检测，并调用loadBottom
             allLoaded:false,//数据是否全部加载完毕，如果是，禁止函数调用
-            page:1, //页码
-            height:'',//根节点div高度
         }
-    },
-    //操作DOM
-    mounted(){
-        this.changeHeight();
     },
     created(){
         //获取路由参数
-        this.page = this.$route.query.page||1;
+        let page = this.$route.query.page||1;
         //发请求
-        this.$axios.get(`getgoods?pageindex=${this.page}`)
+        this.$axios.get(`getgoods?pageindex=${page}`)
         .then(res=>{
             this.goodsList = res.data.message;
-            this.page ++; 
         })
         .catch(err=>console.log(err));
     }
