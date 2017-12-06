@@ -45,6 +45,7 @@ import NewsList from './components/News/NewsList.vue';
 import NewsDetail from './components/News/NewsDetail.vue';
 import PhotoList from './components/Photo/PhotoList.vue';
 import PhotoDetail from './components/Photo/PhotoDetail.vue';
+import Comment from './components/Commons/Comment.vue';
 
 
 // 路由相关组件 结束
@@ -72,7 +73,8 @@ router.addRoutes([
     {name:'news.detail',path:'/news/detail',component:NewsDetail},//新闻详情
     //如果写成 components 会爆错$createElement is undefined
     {name:'photo.list',path:'/photo/list/:categoryId',component:PhotoList},//图文分享
-    {name:'photo.detail',path:'/photo/detail/:imgId',component:PhotoDetail}  //图文详情
+    {name:'photo.detail',path:'/photo/detail/:imgId',component:PhotoDetail},  //图文详情
+    { name:'test',path:'/test',component:Comment},//测试路由
 ]);
 // VueRouter 结束
 
@@ -96,7 +98,7 @@ import './static/css/global.css';
 import Axios from 'axios';
 Vue.prototype.$axios = Axios;
 //设置默认URL请求基础路径
-Axios.defaults.baseURL = 'http://192.168.159.80:8899/api/';
+Axios.defaults.baseURL = 'http://192.168.159.66:8899/api/';
 // Axios 结束
 
 

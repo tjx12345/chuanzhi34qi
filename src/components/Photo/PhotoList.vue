@@ -33,6 +33,49 @@
             imgs:[],//图片信息
         }
     },
+    
+    created(){
+        console.log('图文列表出生了');
+        //获取路由参数
+        let categoryId = this.$route.params.categoryId;
+        this.$axios.all([
+            this.$axios.get('getimgcategory'),
+            this.$axios.get('getimages/' + categoryId)
+        ])
+        .then(this.$axios.spread((categoryRes,imgRes)=>{
+                this.categorys = categoryRes.data.message;
+                this.categorys.unshift({
+                    id:0,title:'全部'
+                });
+                this.imgs = imgRes.data.message;
+                if(this.imgs.length == 0){
+                    this.$toast({
+                      message: '提示:没有图片了',
+                      duration: 5000
+                    });
+                }
+            })
+        )
+    },
+    //路由更新时间  当/a/1 切换成/a/2    path:'/a/:id'
+     beforeRouteUpdate (to, from, next) {
+                    //  0    24
+                    // 从24到0
+    // 在当前路由改变，但是该组件被复用时调用
+    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+    // 可以访问组件实例 `this`
+        //从路由参数中获取分类id
+        // this.$axios.get('getimages/' + to.params.categoryId)
+        // .then(res=>{
+        //     this.imgs = res.data.message;
+        //     next();
+        // });
+
+        this.getImgs(to.params.categoryId);
+        next();
+        
+    },
     methods:{
         getImgs(id){//按分类获取图片数据
             this.$axios.get('getimages/' + id)
@@ -50,22 +93,6 @@
             })
         }
     },
-    created(){
-        //获取路由参数
-        let categoryId = this.$route.params.categoryId;
-        this.$axios.all([
-            this.$axios.get('getimgcategory'),
-            this.$axios.get('getimages/' + categoryId)
-        ])
-        .then(this.$axios.spread((categoryRes,imgRes)=>{
-                this.categorys = categoryRes.data.message;
-                this.categorys.unshift({
-                    id:0,title:'全部'
-                });
-                this.imgs = imgRes.data.message;
-            })
-        )
-    }
  }
 
 

@@ -11,6 +11,15 @@
     - 重新解压node_modules包
 * 注重vue代码编写，css/html可以简化一点
 
+#### 项目第二天第一次练习注意事项
+* 主题评论组件的测试，配置单独的路由 /test
+* 1:先写死，id、pageindex
+* 2:pageindex通过路由参数接收 查询字符串
+* 3:区分追加和created中对comments不同的操作
+    - 一个是赋值
+    - 一个是追加
+    - pageindex自增
+    - 判断是否还有数据的操作
 
 #### 日期格式
 * YYYY-MM-DD HH:mm:ss 
@@ -51,3 +60,11 @@ moment().format('YYYY-MM-DD HH:mm:ss ');
 
 #### 项目依赖包记录
 * `npm i vue vue-router vue-preview axios mint-ui -S && npm i css-loader style-loader less-loader less file-loader url-loader babel-loader babel-core babel-preset-env babel-plugin-transform-runtime vue-loader vue-template-compiler html-webpack-plugin webpack webpack-dev-server -D`
+
+#### 项目第三天的难点
+* 评论发表后的业务操作
+* 商品列表
+    - https://mint-ui.github.io/docs/#/zh-cn2/loadmore
+    - 上拉或下拉
+* 商品详情中小球的飞入
+    - vue过渡效果
