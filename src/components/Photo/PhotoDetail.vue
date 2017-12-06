@@ -18,6 +18,11 @@
         <div class="photo-desc">
             <p v-html="imgInfo.content"></p>
         </div>
+
+        <!-- 使用评论组件 -->
+        <comment :cid="$route.params.imgId"></comment>
+
+
     </div>
 </template>
 <script>

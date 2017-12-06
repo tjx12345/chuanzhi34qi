@@ -5,6 +5,11 @@
 #### 项目github地址
 * https://github.com/tjx12345/chuanzhi34qi.git
 
+
+#### 日期格式
+* YYYY-MM-DD HH:mm:ss 
+* 四个大姨，两个大妹妹，两个大弟弟
+
 #### 项目第一天注意事项
 * 如果轮播图无法出现，确保index.html上的doctype删除
 * 如果项目中出现一些奇怪无法理解的报错,  类似es6.tostring...
@@ -21,9 +26,9 @@
     - pageindex自增
     - 判断是否还有数据的操作
 
-#### 日期格式
-* YYYY-MM-DD HH:mm:ss 
-* 四个大姨，两个大妹妹，两个大弟弟
+#### 评论组件对外依赖
+* 主题id依赖父组件传递
+* 页码依赖url的查询字符串，没有传递就是1
 
 
 ```javascript

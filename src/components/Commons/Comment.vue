@@ -1,5 +1,5 @@
 <template>
-    <div class="tmpl">
+    <div>
         <div class="photo-bottom">
             <ul>
                 <li class="photo-comment">
@@ -9,10 +9,10 @@
                     </div>
                 </li>
                 <li class="txt-comment">
-                    <textarea cols="50"></textarea>
+                    <textarea cols="50" v-model="content"></textarea>
                 </li>
                 <li>
-                    <mt-button type="primary" size="large">发表评论</mt-button>
+                    <mt-button type="primary" size="large" @click="sendComment">发表评论</mt-button>
                 </li>
                 <li class="photo-comment">
                     <div>
@@ -27,20 +27,40 @@
                 </li>
                 
             </ul>
-                <mt-button type="danger" size="large" plain @click="loadMore">加载更多</mt-button>
+                <mt-button type="danger" size="large" plain @click="loadMore">加载更多{{page}}</mt-button>
         </div>
     </div>
 </template>
 <script>
 export default {
+    name:'comment',
+    // 声明props
+    props:['cid'],
     data(){
         return {
             comments:[],//评论信息
             page:1,//页码
             hasData:true,//是否还有数据
+            content:'',//评论内容
+            id:37, //当前主体id
         }
     },
     methods:{
+        //发表评论
+        sendComment(){
+            //评论内容 v-model
+            this.$axios.post(`postcomment/${this.id}`
+                ,`content=${this.content}`)
+            .then(res=>{
+                    //调用loadByPage函数
+                    this.loadByPage(1); //函数内部会自增
+                    //随即将组件内存储的页码归1
+                    this.page = 1;
+                    //清空当前数据
+                    this.content = '';
+            })
+            .catch(err=>console.log(err));
+        },
         loadMore(){
             //判断是否有数据
             if(!this.hasData)return;
@@ -62,25 +82,42 @@ export default {
 
             })
             .catch(err=>console.log(err));
+        },
+        loadByPage(page){
+        
+                // ES6模板字符串
+                this.$axios.get(`getcomments/${this.id}?pageindex=${page}`)
+                .then(res=>{
+                    this.comments = res.data.message;
+                    //页码自增
+                    this.page ++;
+                })
+                .catch(err=> console.log(err) );
         }
     },
     created(){
-        //写死ID值测试
-        this.id = 37;
+        // //写死ID值测试
+        // this.id = 37;
         //写死页码 1;
-        this.page = this.$route.query.pageindex||1;
-        //发请求
-        // this.$axios.get('getcomments/'+id+'?pageindex='+pageindex)
-        // ES6模板字符串
-        this.$axios.get(`getcomments/${this.id}?pageindex=${this.page}`)
-        .then(res=>{
-            this.comments = res.data.message;
-            //页码自增
-            this.page ++;
-        })
-        .catch(err=> console.log(err) );
+        // this.page = this.$route.query.pageindex||1;
+        // //发请求
+        // // this.$axios.get('getcomments/'+id+'?pageindex='+pageindex)
+        // // ES6模板字符串
+        // this.$axios.get(`getcomments/${this.id}?pageindex=${this.page}`)
+        // .then(res=>{
+        //     this.comments = res.data.message;
+        //     //页码自增
+        //     this.page ++;
+        // })
+        // .catch(err=> console.log(err) );
+        
+        //创建组件的时候，接收父组件参数，传递值
+        this.id = this.cid;
 
-    }
+        this.page = this.$route.query.pageindex||1;
+        //调用loadByPage函数
+        this.loadByPage(this.page);
+    },
 }
 
 
