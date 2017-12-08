@@ -45,7 +45,7 @@ export default {
                     });
                     //禁止下拉刷新函数调用
                     this.allLoaded = true;
-                    return;
+                    // return;  有了他，少了一次通知回到初始状态的过程，少了过程loadding的区域一直存在，把元素向上顶了
                 }
                 //追加下一页的数据
                 this.goodsList = this.goodsList.concat(res.data.message);
@@ -101,6 +101,16 @@ export default {
 </script>
 <style scoped>
 
+.title{
+    overflow:hidden; 
+    text-overflow:ellipsis;
+    display:-webkit-box; 
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2; 
+}
+.mint-loadmore{
+    margin-bottom: 59px;
+}
 ul {
     overflow: hidden;
 }
@@ -108,11 +118,12 @@ li {
     width: 50%;
     float: left;
     padding: 6px;
+    height: 300px;
     box-sizing: border-box;
 }
 
 
-li > a:not(.mui-btn) {
+li > a {
     margin: 0px;
     padding: 0px;
     border: 1px solid #5c5c5c;
@@ -123,7 +134,7 @@ li > a:not(.mui-btn) {
 
 }
 
-li > a:not(.mui-btn) img {
+li > a img {
      width: 100%;
 }
 

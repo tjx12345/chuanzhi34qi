@@ -16,12 +16,20 @@
                 <li class="number-li">购买数量：<span>-</span><span>1</span><span>+</span></li>
                 <li>
                     <mt-button type="primary">立即购买</mt-button>
-                    <mt-button type="danger">加入购物车</mt-button>
+                    <mt-button type="danger" @click=
+                "addShopcart">加入购物车</mt-button>
                 </li>
             </ul>
         </div>
        
-            <div class="ball"></div>
+            <!-- 过渡效果必须被内置组件transition包裹。v是指的其name属性 -->
+            <transition name="myball" v-on:after-enter="afterEnter">
+                <div class="ball" v-if="showBall"></div>
+            </transition>
+            
+
+
+
         <div class="product-props">
             <ul>
                 <li>商品参数</li>
@@ -48,8 +56,19 @@ export default {
         return {
             goodsInfo:{},//商品详情信息
             swipeUrl:'',//轮播图的url
+            showBall:false,//小球是否存在
         }
     },
+    methods:{
+        addShopcart(){
+            this.showBall = true;//插入小球，触发v-enter-acitve的动画
+        },
+        afterEnter(){
+            //过渡元素进入后，动画完毕，将小球移除
+            this.showBall = false;
+        }
+    },
+
     created(){
         //获取路由传递来的参数
         let goodsId = this.$route.params.goodsId;
@@ -65,8 +84,18 @@ export default {
 
 </script>
 <style scoped>
+/*设置进入后透明度0，设置0就一直看不见
+.myball-enter-to{
+    opacity: 0;
+}
+*/
 
-.ball-enter-active {
+.myball-leave{
+    opacity: 0;
+}
+
+/*进入中的动画*/
+.myball-enter-active {
     animation: bounce-in 1s;
 }
 

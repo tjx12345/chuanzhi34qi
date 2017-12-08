@@ -106,7 +106,7 @@ import './static/css/global.css';
 import Axios from 'axios';
 Vue.prototype.$axios = Axios;
 //设置默认URL请求基础路径
-Axios.defaults.baseURL = 'http://192.168.159.66:8899/api/';
+Axios.defaults.baseURL = 'http://192.168.159.52:8899/api/';
 // Axios.defaults.baseURL = 'http://vue.studyit.io/api/';
 // Axios 结束
 
