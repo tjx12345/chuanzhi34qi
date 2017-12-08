@@ -31,9 +31,17 @@ obj.getTotalCount = function(){
         let sum = 0;
 
         let arr = Object.values(goodsList);
-        console.log(arr)
         arr.forEach(ele =>  sum += ele);
         return sum;
+}
+
+//保存数组对象
+obj.saveArr = function(arr){
+    let obj = {};
+    arr.forEach(ele=>{
+        obj[ele.id] = ele.pickNum;
+    });
+    this.saveGoods(obj);
 }
 
 export default obj;

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <nav-bar title="新闻详情"></nav-bar>
+        <nav-bar :title="title"></nav-bar>
         <div class="news-title">
-            <p>{{newsInfo.title|convertTitle(15)}}</p>
+            <p>{{newsInfo.title}}</p>
             <div>
                 <span>{{newsInfo.click}}次点击</span>
                 <span>分类:民生经济</span>
@@ -17,7 +17,26 @@ export default {
     data(){
         return {
             newsInfo:{}, //新闻详情
+            title:'',//标题
         }
+    },
+    beforeRouteEnter (to, from, next) {
+        // console.log(from.name);
+      let title = '详情列表';
+      switch(from.name){
+        case 'goods.detail':
+            title = '商品图文介绍';
+            break;
+        case 'news.list':
+            title = '新闻详情';
+            break;
+      }
+      //放行并操作组件实例
+      next(vm => {
+        // 通过 `vm` 访问组件实例
+            vm.title = title;
+      });
+
     },
     created(){
         //1:获取路由参数

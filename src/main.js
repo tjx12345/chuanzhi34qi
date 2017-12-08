@@ -53,6 +53,7 @@ import GoodsList from './components/Goods/GoodsList.vue';
 import GoodsListTest from './components/Goods/GoodsList_test.vue';
 // import Comment from './components/Commons/Comment.vue';
 import GoodsDetail from './components/Goods/GoodsDetail.vue';
+import GoodsComment from './components/Goods/GoodsComment.vue';
 
 
 // 路由相关组件 结束
@@ -83,6 +84,8 @@ router.addRoutes([
     { name:'test',path:'/test',component:GoodsListTest},//测试路由
     { name:'goods.list',path:'/goods/list',component:GoodsList},//商品列表
     {name:'goods.detail',path:'/goods/detail/:goodsId',component:GoodsDetail},
+    {name:'goods.detail.show',path:'/goods/show/info',component:NewsDetail},//商品图文介绍
+    {name:'goods.comment',path:'/goods/comment',component:GoodsComment} //商品评论
 ]);
 // VueRouter 结束
 
@@ -106,7 +109,7 @@ import './static/css/global.css';
 import Axios from 'axios';
 Vue.prototype.$axios = Axios;
 //设置默认URL请求基础路径
-Axios.defaults.baseURL = 'http://192.168.159.52:8899/api/';
+Axios.defaults.baseURL = 'http://127.0.0.1:8899/api/';
 // Axios.defaults.baseURL = 'http://vue.studyit.io/api/';
 //拦截器中实现loadding图标
 Axios.interceptors.request.use(config=>{

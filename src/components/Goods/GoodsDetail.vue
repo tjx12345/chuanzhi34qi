@@ -41,10 +41,10 @@
         <div class="product-info">
             <ul>
                 <li>
-                    <mt-button type="primary" size="large" plain>图文介绍</mt-button>
+                    <mt-button type="primary" size="large" plain @click="goGoodsShow">图文介绍</mt-button>
                 </li>
                 <li>
-                    <mt-button type="danger" size="large" plain>商品评论</mt-button>
+                    <mt-button type="danger" size="large" plain @click="goGoodsComment">商品评论</mt-button>
                 </li>
             </ul>
         </div>
@@ -52,7 +52,7 @@
 </template>
 <script>
 import GoodsTools from '../Commons/GoodsTools.js';
-
+import VueBus from '../Commons/VueBus.js';
 
 export default {
     data(){
@@ -68,6 +68,7 @@ export default {
         addShopcart(){
             this.showBall = true;//插入小球，触发v-enter-acitve的动画
 
+            //更改本地存储
             GoodsTools.addOrUpdate({
                 id:this.goodsInfo.id,
                 num:this.pickNum
@@ -85,12 +86,33 @@ export default {
         afterEnter(){
             //过渡元素进入后，动画完毕，将小球移除
             this.showBall = false;
+             //通知App组件
+            VueBus.$emit('addShopcart',this.pickNum);
         },
         substract(){
             this.pickNum--;
         },
         add(){
             this.pickNum++;
+        },
+        //路由跳转,跳转到图文介绍
+        goGoodsShow(){
+            this.$router.push({
+                name:'goods.detail.show',
+                query:{
+                    newsId:this.goodsInfo.id
+                }
+            });
+        },
+        //路由跳转商品评论
+        goGoodsComment(){
+            //1：去哪里
+            this.$router.push({
+                name:'goods.comment',
+                query:{
+                    cid:this.goodsInfo.id
+                }
+            });
         }
     },
 

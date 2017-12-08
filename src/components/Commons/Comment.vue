@@ -42,7 +42,7 @@ export default {
             page:1,//页码
             hasData:true,//是否还有数据
             content:'',//评论内容
-            id:37, //当前主体id
+            id:0, //当前主体id
         }
     },
     methods:{

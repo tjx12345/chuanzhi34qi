@@ -24,7 +24,7 @@
               </mt-tab-item>
               <mt-tab-item id="shopcart">
                 <img slot="icon" src="../static/img/shopcart.png">
-                购物车<mt-badge type="error" size="small">10</mt-badge>
+                购物车<mt-badge type="error" size="small">{{num}}</mt-badge>
               </mt-tab-item>
               <mt-tab-item id="search">
                 <img slot="icon" src="../static/img/find.png">
@@ -34,10 +34,23 @@
     </div>
 </template>
 <script>
+import GoodsTools from './Commons/GoodsTools.js';
+import VueBus from './Commons/VueBus.js';
     export default {
+        created(){
+          //加减小球数量
+          VueBus.$on('addShopcart',pickNum=>{
+            this.num += pickNum;
+          });
+          //更改小球数量
+          VueBus.$on('changeTotalCount',num =>{
+            this.num = num;
+          })
+        },  
         data(){
             return {
                 selected:'',
+                num:GoodsTools.getTotalCount(),//获取商品总数
             }
         },
         watch:{
