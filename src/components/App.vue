@@ -53,7 +53,7 @@
 </script>
 <style scoped>
 .rv-enter-active,.rv-leave-active{
-   transition: opacity 1s
+   transition: opacity .5s
 }
 
 /*元素移除的时候home,默认透明度1 --> 0*/

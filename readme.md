@@ -63,6 +63,18 @@ moment().format('YYYY-MM-DD HH:mm:ss ');
     - 样子依赖外部 slot填坑
 * v-html中的元素，不被scoped样式所影响,其样式只影响当前存在于template中的元素
 
+#### 新的API
+``` javascript
+var obj = {1:2,3:4};
+undefined
+obj
+{1: 2, 3: 4}
+Object.values(obj);
+(2) [2, 4]
+Object.keys(obj);
+(2) ["1", "3"]
+```
+
 #### 项目依赖包记录
 * `npm i vue vue-router vue-preview axios mint-ui -S && npm i css-loader style-loader less-loader less file-loader url-loader babel-loader babel-core babel-preset-env babel-plugin-transform-runtime vue-loader vue-template-compiler html-webpack-plugin webpack webpack-dev-server -D`
 
