@@ -38,22 +38,22 @@ Vue.component(MyUl.name,MyUl);
 Vue.component(MyLi.name,MyLi);
 // 注册全局组件 结束
 
-
-// 路由相关组件 开始
 import App from './components/App.vue';
-import Home from './components/Home/Home.vue';
-import Member from './components/Member/Member.vue';
-import Shopcart from './components/Shopcart/Shopcart.vue';
-import Search from './components/Search/Search.vue';
-import NewsList from './components/News/NewsList.vue';
-import NewsDetail from './components/News/NewsDetail.vue';
-import PhotoList from './components/Photo/PhotoList.vue';
-import PhotoDetail from './components/Photo/PhotoDetail.vue';
-import GoodsList from './components/Goods/GoodsList.vue';
-import GoodsListTest from './components/Goods/GoodsList_test.vue';
-// import Comment from './components/Commons/Comment.vue';
-import GoodsDetail from './components/Goods/GoodsDetail.vue';
-import GoodsComment from './components/Goods/GoodsComment.vue';
+// 路由相关组件 开始
+
+const Home = r => require(['./components/Home/Home.vue'],r);
+const Member = r => require(['./components/Member/Member.vue'],r);
+const Shopcart = r => require(['./components/Shopcart/Shopcart.vue'],r);
+const Search = r => require(['./components/Search/Search.vue'],r);
+const NewsList = r => require(['./components/News/NewsList.vue'],r);
+const NewsDetail = r => require(['./components/News/NewsDetail.vue'],r);
+const PhotoList = r => require(['./components/Photo/PhotoList.vue'],r);
+const PhotoDetail = r => require(['./components/Photo/PhotoDetail.vue'],r);
+const GoodsList = r => require(['./components/Goods/GoodsList.vue'],r);
+const GoodsListTest = r => require(['./components/Goods/GoodsList_test.vue'],r);
+// const Comment = r => require(['./components/Commons/Comment.vue'],r);
+const GoodsDetail = r => require(['./components/Goods/GoodsDetail.vue'],r);
+const GoodsComment = r => require(['./components/Goods/GoodsComment.vue'],r);
 
 
 // 路由相关组件 结束
@@ -90,15 +90,11 @@ router.addRoutes([
 // VueRouter 结束
 
 // MintUi 开始
-import MintUi from 'mint-ui';
-import 'mint-ui/lib/style.css';
-Vue.use(MintUi);
+// import MintUi from 'mint-ui';
+// import 'mint-ui/lib/style.css';
+// Vue.use(MintUi);
+import Indicator from './importMintUi.js';//加载多个组件，返回一个组件对象
 // MintUi 结束
-
-
-
-
-
 
 // 考虑未来可能有样式的覆盖，在之后再引入自己的css
 import './static/css/global.css';
@@ -113,14 +109,14 @@ Axios.defaults.baseURL = 'http://127.0.0.1:8899/api/';
 // Axios.defaults.baseURL = 'http://vue.studyit.io/api/';
 //拦截器中实现loadding图标
 Axios.interceptors.request.use(config=>{
-    MintUi.Indicator.open({
+    Indicator.open({
         text:'玩命加载中..',
         spinnerType:'triple-bounce'
     })
     return config;
 })
 Axios.interceptors.response.use( response =>{
-    MintUi.Indicator.close();
+    Indicator.close();
     return response;
 });
 
@@ -164,6 +160,13 @@ let store = new Vuex.Store({
 //最终加入到new Vue中
 // 加入Vuex 结束
 
+
+//1:dist
+console.log('更改了代码');
+console.log('版本号以后改变代码');
+console.log('使用数字签名hash以后，更改main.js,看图片请求');
+
+console.log('就更改了一行js代码');
 
 
 

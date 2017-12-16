@@ -243,3 +243,15 @@ Object.keys(obj);
 * 提交  12345
 * 切换到3 改代码，并提交，让本地有记录
 * push 到master的时候，保证Pull下来最新的，时代统一了，就能push之前提交的了
+
+
+#### 运行指定的配置文件
+* webpack --config webpack.vonders.js
+
+#### add-asset-html-webpack-plugin
+* filepath:目标文件绝对路径
+* hash: true 根据filepath生成一段文件标识，文件没改hash不变
+* includeSourcemap: 默认给filepath加上.map 
+* outputpath: 针对module.exports.output.path来追加的路径 
+    - 案例加一个js
+* publicpath: 
