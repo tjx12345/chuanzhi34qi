@@ -218,3 +218,23 @@ Object.keys(obj);
     - 二次为对象添加属性：
         + 1:在this.obj = xxx; 之前，将数据准备好到xxx中
         + 2:this.$set(this.obj,'属性1',value); 后操作的行为
+
+#### vuex
+* 是一个管理全局数据的插件,全局数据共享
+* 不用担心组件显示的数据不同步
+* + - * /
+* 做加法、做减法、做乘法、做除法（函数的方式）
+* 调用该方法
+* 凡是vue中大型一点的应用都会使用vuex，来管理共享数据
+
+#### 总结
+* 1:引入 vuex
+* 2:安装插件  Vue.use(Vuex);
+* 3:创建仓库实例 `let store = new Vuex.store(options)`
+* 4:options:
+    - state 原数据
+    - mutations: 改变数据   DB角色
+    - actions: 业务行为，调用DB     controller
+    - getters: 获取数据
+    - modules: 继续细分模块
+        + 内部是以上5个属性

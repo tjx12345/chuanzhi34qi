@@ -127,8 +127,49 @@ Axios.interceptors.response.use( response =>{
 // Axios 结束
 
 
+// 加入Vuex 开始
+import Vuex from 'vuex';
+import GoodsTools from './components/Commons/GoodsTools';
+//安装插件
+Vue.use(Vuex);
+//创建仓库
+let store = new Vuex.Store({
+    state:{
+        //初始值
+        num:GoodsTools.getTotalCount()
+    },
+    getters:{ //获取
+        getNum(state){ //获取小球数量
+            return state.num;
+        }
+    },
+    actions:{ //业务
+        addShopcart(store,num){
+            store.commit('addNum',num);
+        },
+        changeGoodsNum(store,totalNum){
+            //改变state
+            store.commit('change',totalNum);
+        }
+    },
+    mutations:{//改变数据
+        addNum(state,num){
+            state.num += num;
+        },
+        change(state,num){
+            state.num = num;
+        }
+    }
+});
+//最终加入到new Vue中
+// 加入Vuex 结束
+
+
+
+
 new Vue({
     el:'#app',
     render:c=>c(App),
-    router
+    router,
+    store
 });

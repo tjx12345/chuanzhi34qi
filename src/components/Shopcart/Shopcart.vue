@@ -40,7 +40,6 @@
 
 
 import GoodsTools from '../Commons/GoodsTools.js';
-import VueBus from '../Commons/VueBus.js';
 
 export default {
      beforeRouteLeave (to, from, next) {
@@ -49,7 +48,10 @@ export default {
         if(confirm('亲，确定要离开吗？')){
             //保存当前的数据到本地存储
             GoodsTools.saveArr(this.shopcart);
-            VueBus.$emit('changeTotalCount',GoodsTools.getTotalCount());
+            
+            //this.$store是内存中的js存储
+            //GoodsTools.getTotalCount() 是localStorage
+            this.$store.dispatch('changeGoodsNum',GoodsTools.getTotalCount());
             next();
         }else{
             next(false);
@@ -78,6 +80,7 @@ export default {
         }
     },
     created(){
+
         //获取工具对象中的goodsObj
         let goodsObj = GoodsTools.getGoods();
         //获取url中的ids

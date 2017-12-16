@@ -52,7 +52,6 @@
 </template>
 <script>
 import GoodsTools from '../Commons/GoodsTools.js';
-import VueBus from '../Commons/VueBus.js';
 
 export default {
     data(){
@@ -85,9 +84,9 @@ export default {
         },
         afterEnter(){
             //过渡元素进入后，动画完毕，将小球移除
-            this.showBall = false;
-             //通知App组件
-            VueBus.$emit('addShopcart',this.pickNum);
+             this.showBall = false;
+             //通知仓库
+             this.$store.dispatch('addShopcart',this.pickNum);
         },
         substract(){
             this.pickNum--;
