@@ -254,4 +254,4 @@ Object.keys(obj);
 * includeSourcemap: 默认给filepath加上.map 
 * outputpath: 针对module.exports.output.path来追加的路径 
     - 案例加一个js
-* publicpath: 
+* publicpath: 对于标签的src加上指定的路径
