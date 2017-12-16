@@ -238,3 +238,8 @@ Object.keys(obj);
     - getters: 获取数据
     - modules: 继续细分模块
         + 内部是以上5个属性
+
+#### git记录
+* 提交  12345
+* 切换到3 改代码，并提交，让本地有记录
+* push 到master的时候，保证Pull下来最新的，时代统一了，就能push之前提交的了
